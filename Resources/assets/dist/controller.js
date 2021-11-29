@@ -56,14 +56,20 @@ var _default = /*#__PURE__*/function (_Controller) {
       var hd = new Image();
       hd.addEventListener('load', function () {
         _this.element.src = _this.element.getAttribute('data-hd-src');
-        _this.element.srcset = _this.element.getAttribute('data-hd-srcset');
+
+        if (_this.element.getAttribute('data-hd-srcset')) {
+          _this.element.srcset = _this.element.getAttribute('data-hd-srcset');
+        }
 
         _this._dispatchEvent('lazy-image:ready', {
           hd: hd
         });
       });
       hd.src = this.element.getAttribute('data-hd-src');
-      hd.srcset = this.element.getAttribute('data-hd-srcset');
+
+      if (this.element.getAttribute('data-hd-srcset')) {
+        hd.srcset = this.element.getAttribute('data-hd-srcset');
+      }
 
       this._dispatchEvent('lazy-image:connect', {
         hd: hd
